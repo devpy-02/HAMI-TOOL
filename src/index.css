@@ -1,0 +1,35 @@
+@import "tailwindcss";
+
+html {
+  border-color: #000000;
+}
+
+@layer utilities {
+  .no-scrollbar::-webkit-scrollbar {
+    display: none;
+  }
+  .no-scrollbar {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+  .pb-safe {
+    padding-bottom: env(safe-area-inset-bottom, 16px);
+  }
+}
+
+/* چاپ فاکتور: فقط بخش فاکتور چاپ شود، نه کل برنامه */
+@media print {
+  body.printing-invoice > *:not(#print-invoice-area) {
+    display: none !important;
+  }
+  #print-invoice-area {
+    display: block !important;
+    position: static !important;
+    width: 100% !important;
+    background: #fff !important;
+    overflow: visible !important;
+  }
+  .no-print {
+    display: none !important;
+  }
+}
